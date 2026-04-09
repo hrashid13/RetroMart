@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RetroMart - Remove Listing</title>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html"><strong>RetroMart</strong></a> |
+    <a href="read.html">Listings</a> |
+    <a href="create.html">Sell a Game</a> |
+    <a href="update.html">Update Listing</a> |
+    <a href="delete.html">Remove Listing</a> |
+    <a href="visualizations.html">Charts</a> |
+    <a href="about.html">About</a>
+  </nav>
+
+  <hr />
+
+  <h1>Remove Listing</h1>
+  <p>Are you sure you want to delete this listing? This action cannot be undone.</p>
+
+  <br />
+
+  <h2>Listing to be Deleted</h2>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+      <th>Game Name</th>
+      <td>Super Mario Bros. 3</td>
+    </tr>
+    <tr>
+      <th>Console</th>
+      <td>NES</td>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <td>$45.00</td>
+    </tr>
+    <tr>
+      <th>Seller</th>
+      <td>Carlos Rivera</td>
+    </tr>
+  </table>
+
+  <br />
+
+  <button type="button" onclick="handleDelete()">Confirm Delete</button>
+  &nbsp;
+  <a href="read.html">Cancel &mdash; Back to Listings</a>
+
+  <br /><br />
+  <p id="confirm-message" style="display:none;">
+    <strong>Listing deleted!</strong> This would delete the record from the database when we have it.
+  </p>
+
+  <hr />
+
+  <footer>
+    <p>&copy; 2025 RetroMart &mdash; ISM 6225 Application Development for Analytics &mdash; Hesham Rashid &mdash; Check out my portfolio at <a href="https://www.heshamrashid.org">heshamrashid.org</a></p>
+  </footer>
+
+  <script>
+    function handleDelete() {
+      document.getElementById('confirm-message').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
