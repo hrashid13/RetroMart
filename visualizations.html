@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RetroMart - Charts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html"><strong>RetroMart</strong></a> |
+    <a href="read.html">Listings</a> |
+    <a href="create.html">Sell a Game</a> |
+    <a href="update.html">Update Listing</a> |
+    <a href="delete.html">Remove Listing</a> |
+    <a href="visualizations.html">Charts</a> |
+    <a href="about.html">About</a>
+  </nav>
+
+  <hr />
+
+  <h1>Data Visualizations</h1>
+  <p>Charts based on current RetroMart listings data.</p>
+
+  <br />
+
+  <!-- CHART 1: Games by Console -->
+  <h2>Chart 1: Games by Console</h2>
+  <p>Distribution of listings across each console platform.</p>
+  <canvas id="chart1" width="400" height="400"></canvas>
+
+  <br /><br />
+
+  <!-- CHART 2: Games per Owner -->
+  <h2>Chart 2: Games per Owner</h2>
+  <p>Number of listings each seller currently has on RetroMart.</p>
+  <canvas id="chart2" width="600" height="400"></canvas>
+
+  <br /><br />
+
+  <!-- CHART 3: Average Price by Console -->
+  <h2>Chart 3: Average Price by Console</h2>
+  <p>Average listing price (USD) for games on each console platform.</p>
+  <canvas id="chart3" width="600" height="400"></canvas>
+
+  <hr />
+
+  <footer>
+    <p>&copy; 2025 RetroMart &mdash; ISM 6225 Application Development for Analytics &mdash; Hesham Rashid &mdash; Check out my portfolio at <a href="https://www.heshamrashid.org">heshamrashid.org</a></p>
+  </footer>
+
+  <script>
+
+    // Chart 1: Pie
+    new Chart(document.getElementById('chart1'), {
+      type: 'pie',
+      data: {
+        labels: ['NES', 'SNES', 'N64', 'PS1', 'PS2', 'Sega Genesis'],
+        datasets: [{
+          data: [2, 2, 2, 2, 1, 1],
+          backgroundColor: [
+            '#e63946', '#457b9d', '#2a9d8f', '#e9c46a', '#f4a261', '#264653'
+          ]
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+
+    // Chart 2: Bar
+    new Chart(document.getElementById('chart2'), {
+      type: 'bar',
+      data: {
+        labels: ['Carlos Rivera', 'Maria Chen', 'James Patel', 'Sara Nguyen'],
+        datasets: [{
+          label: 'Number of Listings',
+          data: [3, 3, 2, 2],
+          backgroundColor: '#457b9d'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { stepSize: 1 },
+            title: { display: true, text: 'Listings' }
+          },
+          x: {
+            title: { display: true, text: 'Seller' }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // Chart 3: Bar
+    new Chart(document.getElementById('chart3'), {
+      type: 'bar',
+      data: {
+        labels: ['NES', 'SNES', 'N64', 'PS1', 'PS2', 'Sega Genesis'],
+        datasets: [{
+          label: 'Average Price (USD)',
+          data: [36.50, 55.00, 62.50, 35.00, 25.00, 35.00],
+          backgroundColor: '#2a9d8f'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: 'Price (USD)' }
+          },
+          x: {
+            title: { display: true, text: 'Console' }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
