@@ -23,30 +23,45 @@
 
   <hr />
   <div class="container">
+    <div class="viz-header">
+      <h1>Data Visualizations</h1>
+      <p>Charts based on current RetroMart listings data.</p>
+    </div>
 
-  <h1>Data Visualizations</h1>
-  <p>Charts based on current RetroMart listings data.</p>
+    <div class="charts-grid">
+      <!-- CHART 1: Games by Console -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2>Games by Console</h2>
+          <p>Distribution of listings across each console platform.</p>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart1"></canvas>
+        </div>
+      </div>
 
-  <br />
+      <!-- CHART 2: Games per Owner -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2>Games per Owner</h2>
+          <p>Number of listings each seller currently has on RetroMart.</p>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart2"></canvas>
+        </div>
+      </div>
 
-  <!-- CHART 1: Games by Console -->
-  <h2>Chart 1: Games by Console</h2>
-  <p>Distribution of listings across each console platform.</p>
-  <canvas id="chart1" width="400" height="400"></canvas>
-
-  <br /><br />
-
-  <!-- CHART 2: Games per Owner -->
-  <h2>Chart 2: Games per Owner</h2>
-  <p>Number of listings each seller currently has on RetroMart.</p>
-  <canvas id="chart2" width="600" height="400"></canvas>
-
-  <br /><br />
-
-  <!-- CHART 3: Average Price by Console -->
-  <h2>Chart 3: Average Price by Console</h2>
-  <p>Average listing price (USD) for games on each console platform.</p>
-  <canvas id="chart3" width="600" height="400"></canvas>
+      <!-- CHART 3: Average Price by Console -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2>Average Price by Console</h2>
+          <p>Average listing price (USD) for games on each console platform.</p>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart3"></canvas>
+        </div>
+      </div>
+    </div>
 
   <hr />
     </div>
@@ -55,6 +70,17 @@
   </footer>
 
   <script>
+
+    // Chart options for responsiveness
+    const chartOptions = {
+      maintainAspectRatio: true,
+      responsive: true,
+      plugins: {
+        filler: {
+          propagate: true
+        }
+      }
+    };
 
     // Chart 1: Pie
     new Chart(document.getElementById('chart1'), {
@@ -65,12 +91,22 @@
           data: [2, 2, 2, 2, 1, 1],
           backgroundColor: [
             '#e63946', '#457b9d', '#2a9d8f', '#e9c46a', '#f4a261', '#264653'
-          ]
+          ],
+          borderColor: '#fff',
+          borderWidth: 2
         }]
       },
       options: {
+        ...chartOptions,
         plugins: {
-          legend: { position: 'bottom' }
+          ...chartOptions.plugins,
+          legend: { 
+            position: 'bottom',
+            labels: {
+              padding: 15,
+              font: { size: 13, family: 'Georgia, serif' }
+            }
+          }
         }
       }
     });
@@ -83,21 +119,26 @@
         datasets: [{
           label: 'Number of Listings',
           data: [3, 3, 2, 2],
-          backgroundColor: '#457b9d'
+          backgroundColor: '#457b9d',
+          borderRadius: 6,
+          borderSkipped: false
         }]
       },
       options: {
+        ...chartOptions,
         scales: {
           y: {
             beginAtZero: true,
-            ticks: { stepSize: 1 },
-            title: { display: true, text: 'Listings' }
+            ticks: { stepSize: 1, font: { size: 12 } },
+            title: { display: true, text: 'Listings', font: { size: 14, weight: 'bold' } }
           },
           x: {
-            title: { display: true, text: 'Seller' }
+            title: { display: true, text: 'Seller', font: { size: 14, weight: 'bold' } },
+            ticks: { font: { size: 12 } }
           }
         },
         plugins: {
+          ...chartOptions.plugins,
           legend: { display: false }
         }
       }
@@ -111,20 +152,26 @@
         datasets: [{
           label: 'Average Price (USD)',
           data: [36.50, 55.00, 62.50, 35.00, 25.00, 35.00],
-          backgroundColor: '#2a9d8f'
+          backgroundColor: '#2a9d8f',
+          borderRadius: 6,
+          borderSkipped: false
         }]
       },
       options: {
+        ...chartOptions,
         scales: {
           y: {
             beginAtZero: true,
-            title: { display: true, text: 'Price (USD)' }
+            title: { display: true, text: 'Price (USD)', font: { size: 14, weight: 'bold' } },
+            ticks: { font: { size: 12 } }
           },
           x: {
-            title: { display: true, text: 'Console' }
+            title: { display: true, text: 'Console', font: { size: 14, weight: 'bold' } },
+            ticks: { font: { size: 12 } }
           }
         },
         plugins: {
+          ...chartOptions.plugins,
           legend: { display: false }
         }
       }
